@@ -23,6 +23,8 @@ class SaveButton():
     def __init__(self,x,y):
         self.x = x
         self.y = y
+        saveText=makeLabel("Save",18,700,410,"black")
+        showLabel(saveText)
     
     def draw(self):
         drawRect(self.x,self.y,100,50,"red")
@@ -30,18 +32,23 @@ class SaveButton():
     def checkClicked(self):
         if mousePressed() and self.x <= mouseX() <= self.x+100 and self.y <= mouseY() <= self.y+50:
             saveFile()
+            drawRect(self.x,self.y,100,50,"white")
 
 class LoadButton():
     def __init__(self,x,y):
         self.x = x
         self.y = y
+        loadText=makeLabel("Load",18,700,510,"black")
+        showLabel(loadText)
     
     def draw(self):
         drawRect(self.x,self.y,100,50,"green")
+
     
     def checkClicked(self):
         if mousePressed() and self.x <= mouseX() <= self.x+100 and self.y <= mouseY() <= self.y+50:
             loadFile()
+            drawRect(self.x,self.y,100,50,"white")
 
 def saveFile():
     f = open("blobs.file", "wb")
@@ -60,6 +67,7 @@ setAutoUpdate(False)
 save = SaveButton(700,400)
 load = LoadButton(700,500)
 
+
 while True:
     clearShapes()
     for b in blobs:
@@ -69,6 +77,8 @@ while True:
     save.draw()
     load.checkClicked()
     save.checkClicked()
+
+
     updateDisplay()
     tick(30)
     
